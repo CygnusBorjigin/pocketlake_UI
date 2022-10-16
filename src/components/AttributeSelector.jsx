@@ -1,10 +1,15 @@
 import {useState} from "react";
 import { v4 as uuidv4 } from 'uuid';
 
+// TODO:
+//  * Change the format to NationalWeatherService -> geoLocation -> attributes
+//  * Change the query format to NationalWeatherService -> geoLocation -> attributes
+//  * Add automatic refresh to the query display
 
 const AttributeSelector = (props) => {
     const availableAttribute = ['temperature', 'dewpoint', 'maxTemperature', 'minTemperature', 'relativeHumidity', 'apparentTemperature', 'heatIndex', 'windChill', 'skyCover', 'windDirection', 'windSpeed', 'windGust', 'weather', 'hazards', 'probabilityOfPrecipitation', 'quantitativePrecipitation', 'iceAccumulation', 'snowfallAmount', 'snowLevel', 'ceilingHeight', 'visibility', 'transportWindSpeed', 'transportWindDirection', 'mixingHeight', 'hainesIndex', 'lightningActivityLevel', 'twentyFootWindSpeed', 'twentyFootWindDirection', 'waveHeight', 'wavePeriod', 'waveDirection', 'primarySwellHeight', 'primarySwellDirection', 'secondarySwellHeight', 'secondarySwellDirection', 'wavePeriod2', 'windWaveHeight', 'dispersionIndex', 'pressure', 'probabilityOfTropicalStormWinds', 'probabilityOfHurricaneWinds', 'potentialOf15mphWinds', 'potentialOf25mphWinds', 'potentialOf35mphWinds', 'potentialOf45mphWinds', 'potentialOf20mphWindGusts', 'potentialOf30mphWindGusts', 'potentialOf40mphWindGusts', 'potentialOf50mphWindGusts', 'potentialOf60mphWindGusts', 'grasslandFireDangerIndex', 'probabilityOfThunder', 'davisStabilityIndex', 'atmosphericDispersionIndex', 'lowVisibilityOccurrenceRiskIndex', 'stability', 'redFlagThreatIndex'];
     const [displayAttribute, setDisplayAttribute] = useState(false);
+    const [displayGeoLocation, setDisplayGeolocation] = useState(false);
     const [query, setQuery] = useState({});
 
     const checkNationalWeatherService = () => {
@@ -12,6 +17,10 @@ const AttributeSelector = (props) => {
         const newQuery = Object.keys(query).includes("nationalWeatherService") ? {} : {"nationalWeatherService": {}};
         setQuery(newQuery);
         props.updateQuery(newQuery);
+    };
+
+    const checkGeolocation = () => {
+
     };
 
     const handelCheckAttribute = (checkedAttribute) => {
@@ -32,10 +41,14 @@ const AttributeSelector = (props) => {
     return(
     <div className={"bg-gray-200 w-1/2 mx-4"}>
         <div className={"w-full flex justify-between"}>
-            <h1 className={"ml-20 mt-2 cursor-pointer"} onClick={() => setDisplayAttribute(prev => !prev)}>National Weather Service</h1>
+            <h1 className={"ml-20 mt-2 cursor-pointer"} onClick={() => setDisplayGeolocation(prev => !prev)}>National Weather Service</h1>
             <input type={"checkbox"} onChange={checkNationalWeatherService}></input>
         </div>
-        {displayAttribute ? <ul className={"ml-20 mt-2 font-lora"}>
+        {displayGeoLocation ? <div className={"w-full flex justify-between"}>
+            <h1 className={"ml-28 mt-2 cursor-pointer"} onClick={() => setDisplayAttribute(prev => !prev)}>geolocation</h1>
+            <input type={"checkbox"} onChange={checkGeolocation}></input>
+        </div> : null}
+        {displayAttribute ? <ul className={"ml-40 mt-2 font-lora"}>
             {availableAttribute.map(each_attribute => {
                 return(
                     <li className={"flex justify-between"} key={uuidv4()}>
