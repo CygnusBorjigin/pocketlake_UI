@@ -32,7 +32,7 @@ const AttributeSelector = (props) => {
     return(
     <div className={"bg-gray-200 w-1/2 mx-4"}>
         <div className={"w-full flex justify-between"}>
-            <h1 className={"ml-20 mt-2"}>National Weather Service</h1>
+            <h1 className={"ml-20 mt-2 cursor-pointer"} onClick={() => setDisplayAttribute(prev => !prev)}>National Weather Service</h1>
             <input type={"checkbox"} onChange={checkNationalWeatherService}></input>
         </div>
         {displayAttribute ? <ul className={"ml-20 mt-2 font-lora"}>
