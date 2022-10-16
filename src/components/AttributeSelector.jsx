@@ -20,18 +20,33 @@ const AttributeSelector = (props) => {
     };
 
     const checkGeolocation = () => {
+        if (Object.keys(query.nationalWeatherService).includes("geolocation")) {
+            const newQuery = {
+                "nationalWeatherService": {}
+            };
+            setQuery(newQuery);
+            props.updateQuery(newQuery);
+        } else {
+            const newQuery = {
+                "nationalWeatherService": {
+                    "geolocation": {}
+                }
+            };
 
+            setQuery(newQuery);
+            props.updateQuery(newQuery);
+        }
     };
 
     const handelCheckAttribute = (checkedAttribute) => {
-        if(Object.keys(query.nationalWeatherService).includes(checkedAttribute)){
+        if(Object.keys(query.nationalWeatherService.geolocation).includes(checkedAttribute)){
             const newQuery = query;
-            delete newQuery.nationalWeatherService[checkedAttribute];
+            delete newQuery.nationalWeatherService.geolocation[checkedAttribute];
             setQuery(newQuery);
             props.updateQuery(newQuery);
         } else {
             const newQuery = query;
-            newQuery.nationalWeatherService[checkedAttribute] = {};
+            newQuery.nationalWeatherService.geolocation[checkedAttribute] = {};
             setQuery(newQuery);
             props.updateQuery(newQuery)
         };
@@ -48,7 +63,7 @@ const AttributeSelector = (props) => {
             <h1 className={"ml-28 mt-2 cursor-pointer"} onClick={() => setDisplayAttribute(prev => !prev)}>geolocation</h1>
             <input type={"checkbox"} onChange={checkGeolocation}></input>
         </div> : null}
-        {displayAttribute ? <ul className={"ml-40 mt-2 font-lora"}>
+        {displayAttribute && displayGeoLocation ? <ul className={"ml-40 mt-2 font-lora"}>
             {availableAttribute.map(each_attribute => {
                 return(
                     <li className={"flex justify-between"} key={uuidv4()}>

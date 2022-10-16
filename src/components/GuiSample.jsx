@@ -11,7 +11,7 @@ const GuiSample = () => {
 
     return(
         <div className={"h-screen w-screen bg-gray-200"}>
-            <h1 className={"text-center pt-4 font-cinzel text-3xl"}>ThrorMap Graphical User Interface Demo</h1>
+            <h1 className={"text-center pt-4 font-cinzel text-3xl mb-4"}>ThrorMap Graphical User Interface Demo</h1>
             <div className={"border-t-3 bottom-black w-screen flex"}>
                 <AttributeSelector updateQuery={setQuery}/>
                 <div className={"w-1/2 px-4"}>
