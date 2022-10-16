@@ -1,14 +1,17 @@
 import {useState} from "react";
 import { v4 as uuidv4 } from 'uuid';
 
-const AttributeSelector = () => {
+
+const AttributeSelector = (props) => {
     const availableAttribute = ['temperature', 'dewpoint', 'maxTemperature', 'minTemperature', 'relativeHumidity', 'apparentTemperature', 'heatIndex', 'windChill', 'skyCover', 'windDirection', 'windSpeed', 'windGust', 'weather', 'hazards', 'probabilityOfPrecipitation', 'quantitativePrecipitation', 'iceAccumulation', 'snowfallAmount', 'snowLevel', 'ceilingHeight', 'visibility', 'transportWindSpeed', 'transportWindDirection', 'mixingHeight', 'hainesIndex', 'lightningActivityLevel', 'twentyFootWindSpeed', 'twentyFootWindDirection', 'waveHeight', 'wavePeriod', 'waveDirection', 'primarySwellHeight', 'primarySwellDirection', 'secondarySwellHeight', 'secondarySwellDirection', 'wavePeriod2', 'windWaveHeight', 'dispersionIndex', 'pressure', 'probabilityOfTropicalStormWinds', 'probabilityOfHurricaneWinds', 'potentialOf15mphWinds', 'potentialOf25mphWinds', 'potentialOf35mphWinds', 'potentialOf45mphWinds', 'potentialOf20mphWindGusts', 'potentialOf30mphWindGusts', 'potentialOf40mphWindGusts', 'potentialOf50mphWindGusts', 'potentialOf60mphWindGusts', 'grasslandFireDangerIndex', 'probabilityOfThunder', 'davisStabilityIndex', 'atmosphericDispersionIndex', 'lowVisibilityOccurrenceRiskIndex', 'stability', 'redFlagThreatIndex'];
     const [displayAttribute, setDisplayAttribute] = useState(false);
     const [query, setQuery] = useState({});
 
     const checkNationalWeatherService = () => {
         setDisplayAttribute(prev => !prev);
-        setQuery(Object.keys(query).includes("nationalWeatherService") ? {} : {"nationalWeatherService": {}});
+        const newQuery = Object.keys(query).includes("nationalWeatherService") ? {} : {"nationalWeatherService": {}};
+        setQuery(newQuery);
+        props.updateQuery(newQuery);
     };
 
     const handelCheckAttribute = (checkedAttribute) => {
@@ -16,16 +19,18 @@ const AttributeSelector = () => {
             const newQuery = query;
             delete newQuery.nationalWeatherService[checkedAttribute];
             setQuery(newQuery);
+            props.updateQuery(newQuery);
         } else {
             const newQuery = query;
             newQuery.nationalWeatherService[checkedAttribute] = {};
             setQuery(newQuery);
+            props.updateQuery(newQuery)
         };
 
-        console.log(query)
     };
 
-    return <div className={"bg-gray-200 w-1/2 mx-4"}>
+    return(
+    <div className={"bg-gray-200 w-1/2 mx-4"}>
         <div className={"w-full flex justify-between"}>
             <h1 className={"ml-20 mt-2"}>National Weather Service</h1>
             <input type={"checkbox"} onChange={checkNationalWeatherService}></input>
@@ -46,7 +51,8 @@ const AttributeSelector = () => {
                 )
             })}
         </ul> : null}
-    </div>;
+    </div>
+    );
 }
 
 export default AttributeSelector;
