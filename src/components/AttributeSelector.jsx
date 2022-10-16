@@ -2,8 +2,6 @@ import {useState} from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 // TODO:
-//  * Change the format to NationalWeatherService -> geoLocation -> attributes
-//  * Change the query format to NationalWeatherService -> geoLocation -> attributes
 //  * Add automatic refresh to the query display
 
 const AttributeSelector = (props) => {
@@ -11,6 +9,9 @@ const AttributeSelector = (props) => {
     const [displayAttribute, setDisplayAttribute] = useState(false);
     const [displayGeoLocation, setDisplayGeolocation] = useState(false);
     const [query, setQuery] = useState({});
+
+    const [latitude, setLatitude] = useState(0);
+    const [longitude, setLongitude] = useState(0);
 
     const checkNationalWeatherService = () => {
         setDisplayAttribute(prev => !prev);
@@ -29,7 +30,10 @@ const AttributeSelector = (props) => {
         } else {
             const newQuery = {
                 "nationalWeatherService": {
-                    "geolocation": {}
+                    "geolocation": {
+                        "latitude": 0.0,
+                        "longitude": 0.0
+                    }
                 }
             };
 
@@ -53,6 +57,22 @@ const AttributeSelector = (props) => {
 
     };
 
+    const handelChangeLad = (event) => {
+        setLatitude(event.target.value);
+        const newQuery = query;
+        newQuery.nationalWeatherService.geolocation.latitude = event.target.value;
+        setQuery(newQuery);
+        props.updateQuery(newQuery);
+    }
+
+    const handelChangeLong = (event) => {
+        setLongitude(event.target.value);
+        const newQuery = query;
+        newQuery.nationalWeatherService.geolocation.longitude = event.target.value;
+        setQuery(newQuery);
+        props.updateQuery(newQuery);
+    }
+
     return(
     <div className={"bg-gray-200 w-1/2 mx-4"}>
         <div className={"w-full flex justify-between"}>
@@ -61,7 +81,13 @@ const AttributeSelector = (props) => {
         </div>
         {displayGeoLocation ? <div className={"w-full flex justify-between"}>
             <h1 className={"ml-28 mt-2 cursor-pointer"} onClick={() => setDisplayAttribute(prev => !prev)}>geolocation</h1>
-            <input type={"checkbox"} onChange={checkGeolocation}></input>
+            <div>
+                <label className={"mr-2"}>latitude</label>
+                <input placeholder={"latitude"} value={latitude} className={"text-center"} id={"lad"} onChange={handelChangeLad}></input>
+                <label className={"mx-2"}>longitude</label>
+                <input placeholder={"longitude"} value={longitude} className={"text-center"} id={"lon"} onChange={handelChangeLong}></input>
+                <input type={"checkbox"} onChange={checkGeolocation} className={"ml-2"}></input>
+            </div>
         </div> : null}
         {displayAttribute && displayGeoLocation ? <ul className={"ml-40 mt-2 font-lora"}>
             {availableAttribute.map(each_attribute => {
@@ -72,8 +98,10 @@ const AttributeSelector = (props) => {
                             <p>{each_attribute}</p>
                         </div>
                         <div>
-                            <input placeholder={"time from"} className={"text-center"}></input>
-                            <input placeholder={"time to"} className={"text-center"}></input>
+                            <label className={"mr-2"}>time from</label>
+                            <input placeholder={"any"} className={"text-center"}></input>
+                            <label className={"mx-2"}>time to</label>
+                            <input placeholder={"any"} className={"text-center"}></input>
                         </div>
                     </li>
                 )
