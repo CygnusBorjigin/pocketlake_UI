@@ -17,6 +17,14 @@ const EachAttribute = (props) => {
         handelChangeValue(attributeName, "timeFrom", event.target.value);
     }
 
+    const handelCheckBox = () => {
+        handelCheckAttribute(attributeName);
+        setTimeFrom(0);
+        setTimeTo(0);
+        setAutoFocusTo(false);
+        setAutoFocusFrom(false);
+    }
+
     const handelChangeTimeTo = (event) => {
         setAutoFocusFrom(false);
         setAutoFocusTo(true);
@@ -27,7 +35,7 @@ const EachAttribute = (props) => {
     return(
         <li className={"flex justify-between"} key={uuidv4()}>
             <div className={"flex"}>
-                {autoFocusFrom || autoFocusTo ? <input type={"checkbox"} className={"mr-2"} onChange={() => handelCheckAttribute(attributeName)} checked></input> : <input type={"checkbox"} className={"mr-2"} onChange={() => handelCheckAttribute(attributeName)}></input>}
+                {autoFocusFrom || autoFocusTo ? <input type={"checkbox"} className={"mr-2"} onChange={handelCheckBox} checked></input> : <input type={"checkbox"} className={"mr-2"} onChange={() => handelCheckAttribute(attributeName)}></input>}
 
                 <p>{attributeName}</p>
             </div>
