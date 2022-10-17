@@ -27,7 +27,8 @@ const EachAttribute = (props) => {
     return(
         <li className={"flex justify-between"} key={uuidv4()}>
             <div className={"flex"}>
-                <input type={"checkbox"} className={"mr-2"} onChange={() => handelCheckAttribute(attributeName)}></input>
+                {autoFocusFrom || autoFocusTo ? <input type={"checkbox"} className={"mr-2"} onChange={() => handelCheckAttribute(attributeName)} checked></input> : <input type={"checkbox"} className={"mr-2"} onChange={() => handelCheckAttribute(attributeName)}></input>}
+
                 <p>{attributeName}</p>
             </div>
             <div>
