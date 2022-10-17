@@ -1,5 +1,6 @@
 import {useState} from "react";
 import { v4 as uuidv4 } from 'uuid';
+import EachAttribute from "./EachAttribute";
 
 // TODO:
 //  * Add automatic refresh to the query display
@@ -42,21 +43,6 @@ const AttributeSelector = (props) => {
         }
     };
 
-    const handelCheckAttribute = (checkedAttribute) => {
-        if(Object.keys(query.nationalWeatherService.geolocation).includes(checkedAttribute)){
-            const newQuery = query;
-            delete newQuery.nationalWeatherService.geolocation[checkedAttribute];
-            setQuery(newQuery);
-            props.updateQuery(newQuery);
-        } else {
-            const newQuery = query;
-            newQuery.nationalWeatherService.geolocation[checkedAttribute] = {};
-            setQuery(newQuery);
-            props.updateQuery(newQuery)
-        };
-
-    };
-
     const handelChangeLad = (event) => {
         setLatitude(event.target.value);
         const newQuery = query;
@@ -73,37 +59,74 @@ const AttributeSelector = (props) => {
         props.updateQuery(newQuery);
     }
 
+    const handelCheckAttributeName = (attributeName) => {
+        if(Object.keys(query.nationalWeatherService.geolocation).includes(attributeName)){
+            const newQuery = query;
+            delete newQuery.nationalWeatherService.geolocation[attributeName];
+            setQuery(newQuery);
+            props.updateQuery(newQuery);
+        } else {
+            const newQuery = query;
+            newQuery.nationalWeatherService.geolocation[attributeName] = {
+                "timeFrom": 0,
+                "timeTo": 0
+            };
+            setQuery(newQuery);
+            props.updateQuery(newQuery)
+        };
+    };
+
+    const handelChangeAttributeValue = (attributeName, valueName, newValue) => {
+        const newQuery = query;
+        newQuery.nationalWeatherService.geolocation[attributeName][valueName] = newValue;
+        setQuery(newQuery);
+        props.updateQuery(newQuery);
+    }
+
     return(
-    <div className={"bg-gray-200 w-1/2 mx-4"}>
+    <div className={"bg-gray-200 w-2/3 mx-4"}>
         <div className={"w-full flex justify-between"}>
             <h1 className={"ml-20 mt-2 cursor-pointer"} onClick={() => setDisplayGeolocation(prev => !prev)}>National Weather Service</h1>
             <input type={"checkbox"} onChange={checkNationalWeatherService}></input>
         </div>
-        {displayGeoLocation ? <div className={"w-full flex justify-between"}>
-            <h1 className={"ml-28 mt-2 cursor-pointer"} onClick={() => setDisplayAttribute(prev => !prev)}>geolocation</h1>
-            <div>
-                <label className={"mr-2"}>latitude</label>
-                <input placeholder={"latitude"} value={latitude} className={"text-center"} id={"lad"} onChange={handelChangeLad}></input>
-                <label className={"mx-2"}>longitude</label>
-                <input placeholder={"longitude"} value={longitude} className={"text-center"} id={"lon"} onChange={handelChangeLong}></input>
-                <input type={"checkbox"} onChange={checkGeolocation} className={"ml-2"}></input>
-            </div>
-        </div> : null}
+        {displayGeoLocation ?
+            <div className={"w-full flex justify-between"}>
+                <h1 className={"ml-28 mt-2 cursor-pointer"} onClick={() => setDisplayAttribute(prev => !prev)}>geolocation</h1>
+                <div>
+                    <label className={"mr-2"}>latitude</label>
+                    <input
+                        placeholder={"latitude"}
+                        value={latitude}
+                        className={"text-center"}
+                        id={"lad"}
+                        onChange={handelChangeLad}></input>
+                    <label
+                        className={"mx-2"}>
+                        longitude
+                    </label>
+                    <input
+                        placeholder={"longitude"}
+                        value={longitude}
+                        className={"text-center"}
+                        id={"lon"}
+                        onChange={handelChangeLong}>
+                    </input>
+                    <input
+                        type={"checkbox"}
+                        onChange={checkGeolocation}
+                        className={"ml-2"}>
+                    </input>
+                </div>
+            </div> : null}
         {displayAttribute && displayGeoLocation ? <ul className={"ml-40 mt-2 font-lora"}>
             {availableAttribute.map(each_attribute => {
                 return(
-                    <li className={"flex justify-between"} key={uuidv4()}>
-                        <div className={"flex"}>
-                            <input type={"checkbox"} className={"mr-2"} onChange={() => handelCheckAttribute(each_attribute)}></input>
-                            <p>{each_attribute}</p>
-                        </div>
-                        <div>
-                            <label className={"mr-2"}>time from</label>
-                            <input placeholder={"any"} className={"text-center"}></input>
-                            <label className={"mx-2"}>time to</label>
-                            <input placeholder={"any"} className={"text-center"}></input>
-                        </div>
-                    </li>
+                    <EachAttribute
+                        key={uuidv4()}
+                        attributeName={each_attribute}
+                        handelCheckAttribute={handelCheckAttributeName}
+                        handelChangeValue={handelChangeAttributeValue}>
+                    </EachAttribute>
                 )
             })}
         </ul> : null}
