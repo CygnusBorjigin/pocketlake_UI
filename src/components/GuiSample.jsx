@@ -6,6 +6,8 @@ import eachAttribute from "./EachAttribute";
 
 const GuiSample = () => {
     const [query, setQuery] = useState({});
+    const [displayRes, setDisplayRes] = useState(false);
+    const [resData, setResData] = useState({});
 
     const getForcastLink = async (lat, long) => {
         const config = {
@@ -70,6 +72,8 @@ const GuiSample = () => {
         if(forcastLink.success){
             const weatherInfo = await getWeatherInfo(forcastLink.message);
             const resData = cleanData(weatherInfo.message, Object.keys(query.nationalWeatherService.geolocation));
+            setResData(resData);
+            setDisplayRes(true);
         } else {
         }
     }
@@ -85,6 +89,7 @@ const GuiSample = () => {
                     <ReactJson src={query} />
                 </div>
             </div>
+            {displayRes ? <ReactJson src={resData} />: null}
         </div>
     )
 }
