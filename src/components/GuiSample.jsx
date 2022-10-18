@@ -1,13 +1,79 @@
 import AttributeSelector from "./AttributeSelector";
 import ReactJson from 'react-json-view';
 import {useState} from "react";
+import axios from "axios";
+import eachAttribute from "./EachAttribute";
 
 const GuiSample = () => {
     const [query, setQuery] = useState({});
 
-    const handelGetData = async () => {
+    const getForcastLink = async (lat, long) => {
+        const config = {
+            method: 'get',
+            url: `https://api.weather.gov/points/${lat},${long}`,
+        };
 
+        try{
+            const res = await axios(config);
+            const resLink = res.data.properties.forecastGridData;
+            return {
+                "success": true,
+                "message": resLink
+            };
+        } catch (e) {
+            return {
+                "success": false,
+                "message": "invalid geolocation"
+            }
+        }
+
+    };
+
+    const getWeatherInfo = async (forcastLink) => {
+        const config = {
+            method: 'get',
+            url: forcastLink,
+        };
+
+        try{
+            const res = await axios(config);
+            const resData = res.data.properties;
+            return {
+                "success": true,
+                "message": resData
+            };
+        } catch (e) {
+            return {
+              "success": false,
+              "message": e
+            };
+        }
     }
+
+    const cleanData = (rawData, requiredAttribute) => {
+        const cleanedData = requiredAttribute.map(eachAttribute => {
+            if(Object.keys(rawData).includes(eachAttribute)){
+                const res = {
+                    "attribute": eachAttribute,
+                    "data": rawData[eachAttribute]
+                }
+
+                return res;
+            }
+        });
+
+        return cleanedData;
+    }
+
+    const handelGetData = async () => {
+        const forcastLink = await getForcastLink(42.360100, -71.058900);
+        if(forcastLink.success){
+            const weatherInfo = await getWeatherInfo(forcastLink.message);
+            const resData = cleanData(weatherInfo.message, Object.keys(query.nationalWeatherService.geolocation));
+        } else {
+        }
+    }
+
 
     return(
         <div className={"h-screen w-screen bg-gray-200"}>
