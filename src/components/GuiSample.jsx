@@ -68,13 +68,38 @@ const GuiSample = () => {
     }
 
     const handelGetData = async () => {
-        const forcastLink = await getForcastLink(42.360100, -71.058900);
+        const latitude = query.nationalWeatherService.geolocation.latitude;
+        const longitude = query.nationalWeatherService.geolocation.longitude;
+        const forcastLink = await getForcastLink(latitude, longitude);
         if(forcastLink.success){
             const weatherInfo = await getWeatherInfo(forcastLink.message);
             const resData = cleanData(weatherInfo.message, Object.keys(query.nationalWeatherService.geolocation));
             setResData(resData);
             setDisplayRes(true);
         } else {
+            setResData(forcastLink);
+        }
+    }
+
+    const handelGetDataBackend = async () => {
+
+        const config = {
+            method: 'get',
+            url: "http://localhost:8000",
+        };
+
+        try{
+            const res = await axios(config);
+            const resLink = res.data.properties.forecastGridData;
+            return {
+                "success": true,
+                "message": resLink
+            };
+        } catch (e) {
+            return {
+                "success": false,
+                "message": "invalid geolocation"
+            }
         }
     }
 
