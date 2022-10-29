@@ -1,3 +1,5 @@
+import {Link as ScrollLink} from 'react-scroll';
+
 const NavBar = () => {
     const buttonStyle = "m-4 border-b-2 border-b-black hover:border-b-white px-3 font-cinzel text-lg";
     return(
@@ -10,11 +12,15 @@ const NavBar = () => {
                     <span className={"text-sm ml-16"}>Just Ask</span>
                 </div>
                 <div>
-                    <button className={buttonStyle}>Home</button>
-                    <button className={buttonStyle}>About Us</button>
+                    <button className={buttonStyle}>
+                        <ScrollLink to="home" spy={true} smooth={true} offset={50} duration={500}>Home</ScrollLink>
+                    </button>
+                    <button className={buttonStyle}>
+                        <ScrollLink to="about" spy={true} smooth={true} offset={50} duration={500}>About Us</ScrollLink>
+                    </button>
                     <button className={buttonStyle}>Docs</button>
-                    <button className={buttonStyle}>Dashboard</button>
                     <button className={buttonStyle}>Contact</button>
+                    <button className={buttonStyle}>Login</button>
                 </div>
             </div>
         </div>
