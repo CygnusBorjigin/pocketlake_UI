@@ -1,6 +1,7 @@
 import NavBar from "./NavBar";
 import Home from "./Home";
 import About from "./About";
+import DocsDisplay from "./DocsDisplay";
 
 const LandingPage = () => {
 
@@ -9,6 +10,7 @@ const LandingPage = () => {
             <NavBar></NavBar>
             <Home></Home>
             <About></About>
+            <DocsDisplay></DocsDisplay>
         </div>
     )
 }
