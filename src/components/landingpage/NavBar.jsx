@@ -21,8 +21,11 @@ const NavBar = () => {
                     <button className={buttonStyle}>
                         <ScrollLink to="docs" spy={true} smooth={true} offset={50} duration={500}>Docs</ScrollLink>
                     </button>
-                    <button className={buttonStyle}>Contact</button>
+                    <button className={buttonStyle}>
+                        <ScrollLink to="contact" spy={true} smooth={true} offset={50} duration={500}>Contact</ScrollLink>
+                    </button>
                     <button className={buttonStyle}>Login</button>
+                    <button className={buttonStyle}>Try It out</button>
                 </div>
             </div>
         </div>
