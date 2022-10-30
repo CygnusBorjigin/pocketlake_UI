@@ -1,4 +1,4 @@
-import GuiSample from "./components/GuiSample";
+import GuiSample from "./components/demo/GuiSample";
 import LandingPage from "./components/landingpage/LandingPage";
 import { Routes, Route } from "react-router-dom";
 

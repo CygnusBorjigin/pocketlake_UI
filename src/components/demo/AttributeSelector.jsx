@@ -9,24 +9,21 @@ const AttributeSelector = (props) => {
     const availableAttribute = ['temperature', 'dewpoint', 'maxTemperature', 'minTemperature', 'relativeHumidity', 'apparentTemperature', 'heatIndex', 'windChill', 'skyCover', 'windDirection', 'windSpeed', 'windGust', 'weather', 'hazards', 'probabilityOfPrecipitation', 'quantitativePrecipitation', 'iceAccumulation', 'snowfallAmount', 'snowLevel', 'ceilingHeight', 'visibility', 'transportWindSpeed', 'transportWindDirection', 'mixingHeight', 'hainesIndex', 'lightningActivityLevel', 'twentyFootWindSpeed', 'twentyFootWindDirection', 'waveHeight', 'wavePeriod', 'waveDirection', 'primarySwellHeight', 'primarySwellDirection', 'secondarySwellHeight', 'secondarySwellDirection', 'wavePeriod2', 'windWaveHeight', 'dispersionIndex', 'pressure', 'probabilityOfTropicalStormWinds', 'probabilityOfHurricaneWinds', 'potentialOf15mphWinds', 'potentialOf25mphWinds', 'potentialOf35mphWinds', 'potentialOf45mphWinds', 'potentialOf20mphWindGusts', 'potentialOf30mphWindGusts', 'potentialOf40mphWindGusts', 'potentialOf50mphWindGusts', 'potentialOf60mphWindGusts', 'grasslandFireDangerIndex', 'probabilityOfThunder', 'davisStabilityIndex', 'atmosphericDispersionIndex', 'lowVisibilityOccurrenceRiskIndex', 'stability', 'redFlagThreatIndex'];
     const [displayAttribute, setDisplayAttribute] = useState(false);
     const [displayGeoLocation, setDisplayGeolocation] = useState(false);
-    const [query, setQuery] = useState({});
 
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
 
     const checkNationalWeatherService = () => {
         setDisplayAttribute(prev => !prev);
-        const newQuery = Object.keys(query).includes("nationalWeatherService") ? {} : {"nationalWeatherService": {}};
-        setQuery(newQuery);
+        const newQuery = Object.keys(props.currentQuery).includes("nationalWeatherService") ? {} : {"nationalWeatherService": {}};
         props.updateQuery(newQuery);
     };
 
     const checkGeolocation = () => {
-        if (Object.keys(query.nationalWeatherService).includes("geolocation")) {
+        if (Object.keys(props.currentQuery.nationalWeatherService).includes("geolocation")) {
             const newQuery = {
                 "nationalWeatherService": {}
             };
-            setQuery(newQuery);
             props.updateQuery(newQuery);
         } else {
             const newQuery = {
@@ -37,49 +34,42 @@ const AttributeSelector = (props) => {
                     }
                 }
             };
-
-            setQuery(newQuery);
             props.updateQuery(newQuery);
         }
     };
 
     const handelChangeLad = (event) => {
         setLatitude(event.target.value);
-        const newQuery = query;
+        const newQuery = props.currentQuery;
         newQuery.nationalWeatherService.geolocation.latitude = event.target.value;
-        setQuery(newQuery);
         props.updateQuery(newQuery);
     }
 
     const handelChangeLong = (event) => {
         setLongitude(event.target.value);
-        const newQuery = query;
+        const newQuery = props.currentQuery;
         newQuery.nationalWeatherService.geolocation.longitude = event.target.value;
-        setQuery(newQuery);
         props.updateQuery(newQuery);
     }
 
     const handelCheckAttributeName = (attributeName) => {
-        if(Object.keys(query.nationalWeatherService.geolocation).includes(attributeName)){
-            const newQuery = query;
+        if(Object.keys(props.currentQuery.nationalWeatherService.geolocation).includes(attributeName)){
+            const newQuery = props.currentQuery;
             delete newQuery.nationalWeatherService.geolocation[attributeName];
-            setQuery(newQuery);
             props.updateQuery(newQuery);
         } else {
-            const newQuery = query;
+            const newQuery = props.currentQuery;
             newQuery.nationalWeatherService.geolocation[attributeName] = {
                 "timeFrom": 0,
                 "timeTo": 0
             };
-            setQuery(newQuery);
             props.updateQuery(newQuery)
         };
     };
 
     const handelChangeAttributeValue = (attributeName, valueName, newValue) => {
-        const newQuery = query;
+        const newQuery = props.currentQuery;
         newQuery.nationalWeatherService.geolocation[attributeName][valueName] = newValue;
-        setQuery(newQuery);
         props.updateQuery(newQuery);
     }
 
