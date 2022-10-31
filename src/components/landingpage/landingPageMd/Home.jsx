@@ -10,8 +10,8 @@ const Home = () => {
                     <h1>through <span className={"text-green-400"}>one standardized</span> access point.</h1>
                 </div>
                 <div className={"ml-16 mt-40 font-raleway w-2/3"}>
-                    <h1 className={"text-[30px]"}>Precise, standardized, and formatted data delivered instantaneously.</h1>
-                    <h1 className={"text-[30px]"}>Support your project and research with the full data power of the <span className={"text-green-400"}>U.S. federal government</span>.</h1>
+                    <h1 className={"text-[20px]"}>Precise, standardized, and formatted data delivered instantaneously.</h1>
+                    <h1 className={"text-[20px]"}>Support your project and research with the full data power of the <span className={"text-green-400"}>U.S. federal government</span>.</h1>
                     <div className={"w-full flex justify-center mt-16"}>
                         <button className={"border-2 border-green-500 rounded-2xl px-6 py-2 text-[20px] font-bold text-green-500 bg-black font-lora hover:border-0 hover:bg-green-500 hover:text-black"}>Get Started</button>
                     </div>

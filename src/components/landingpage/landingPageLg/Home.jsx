@@ -17,7 +17,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <img src={landingOne} className={"w-1/5 h-[500px] right-4 top-[300px] absolute"}></img>
+            <img src={landingOne} className={"w-1/4 h-[500px] right-4 top-[300px] absolute"}></img>
         </div>
     )
 }

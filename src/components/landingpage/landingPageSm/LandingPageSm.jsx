@@ -5,7 +5,7 @@ import DocsDisplay from "./DocsDisplay";
 import Contact from "./Contact";
 import {useEffect, useState} from "react";
 
-const LandingPageLg = () => {
+const LandingPageSm = () => {
 
     return(
         <div className={"w-screen bg-black"}>
@@ -18,4 +18,4 @@ const LandingPageLg = () => {
     )
 }
 
-export default LandingPageLg;
+export default LandingPageSm;

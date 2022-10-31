@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import LandingPageLg from "./landingPageLg/LandingPageLg";
 import LandingPageMd from "./landingPageMd/LandingPageMd";
+import LandingPageSm from "./landingPageSm/LandingPageSm";
 
 const LandingPage = () => {
     // get screen size
@@ -26,7 +27,7 @@ const LandingPage = () => {
 
     return(
         <div>
-            {windowDimension.winWidth > 1460 ? <LandingPageLg></LandingPageLg> : <LandingPageMd />}
+            {windowDimension.winWidth > 1460 ? <LandingPageLg></LandingPageLg> : (windowDimension.winWidth > 790 ? <LandingPageMd /> : <LandingPageSm />)}
         </div>
     )
 }
