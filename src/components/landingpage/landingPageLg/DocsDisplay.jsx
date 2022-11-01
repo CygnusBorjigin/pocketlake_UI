@@ -5,8 +5,8 @@ const DocsDisplay = () => {
         {title: "Quick Start on API", summary: "A quick start guide on API query syntax"}]
     return (
         <div className={"w-screen h-screen bg-black text-white flex flex-col justify-center"} id={"docs"}>
-            <div className={"h-1/2 flex justify-center"}>
-                {docInfo.map(each => <EachDoc info={each}></EachDoc>)}
+            <div className={"h-1/2 flex justify-center mt-[300px]"}>
+                    {docInfo.map(each => <EachDoc info={each}></EachDoc>)}
             </div>
         </div>
     )
