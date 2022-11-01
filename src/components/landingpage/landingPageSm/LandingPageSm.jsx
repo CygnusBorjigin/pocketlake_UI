@@ -8,7 +8,7 @@ import {useEffect, useState} from "react";
 const LandingPageSm = () => {
 
     return(
-        <div className={"w-screen bg-black"}>
+        <div className={"w-screen bg-black flex flex-col"}>
             <NavBar></NavBar>
             <Home></Home>
             <About></About>
