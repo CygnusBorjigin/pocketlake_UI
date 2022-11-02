@@ -13,7 +13,7 @@ const Home = () => {
                     <h1 className={"text-[20px]"}>Precise, standardized, and formatted data delivered instantaneously.</h1>
                     <h1 className={"text-[20px]"}>Support your project and research with the full data power of the <span className={"text-green-400"}>U.S. federal government</span>.</h1>
                     <div className={"w-full flex justify-center mt-16"}>
-                        <button className={"border-2 border-green-500 rounded-2xl px-6 py-2 text-[20px] font-bold text-green-500 bg-black font-lora hover:border-0 hover:bg-green-500 hover:text-black"}>Get Started</button>
+                        <button className={"border-2 border-green-500 shadow-lg shadow-green-500 rounded-2xl px-6 py-2 text-[20px] font-bold text-green-500 bg-black font-lora hover:bg-green-500 hover:text-black"}>Get Started</button>
                     </div>
                 </div>
                 <img src={landingOne} className={"w-1/3 h-[500px] right-4 top-[300px] absolute"}></img>
