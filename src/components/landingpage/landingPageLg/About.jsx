@@ -13,7 +13,7 @@ const About = () => {
                     <p className={"mb-8"}><span className={emphStyle}>One</span> access point, <span className={emphStyle}>fourteen</span> departments, over <span className={emphStyle}>six thousand</span> agencies, <span className={emphStyle}>millions</span> of databases at your fingertips. </p>
                     <p className={"mb-8"}>Provided through a GraphQL inspired entrypoint to a custom conceptual <span className={emphStyle}>data lake</span> containing this industry-changing data</p>
                     <p>Received official endorsement and support from <span className={emphStyle}>Boston University</span> through BU BuildLab</p>
-                    <img src={buSeal} className={"w-[200px] mt-8 mx-auto"}></img>
+                    <img src={buSeal} className={"w-[200px] mt-4 mx-auto"}></img>
                     <div className={"flex justify-center"}>
                         {endorsements.map(each => <EachEndorsement author={each.author} message={each.message} />)}
                     </div>
