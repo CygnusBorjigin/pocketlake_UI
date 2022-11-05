@@ -13,7 +13,7 @@ const LandingPageLg = () => {
             <Home></Home>
             <About></About>
             <DocsDisplay></DocsDisplay>
-            {/*<Contact></Contact>*/}
+            <Contact></Contact>
         </div>
     )
 }

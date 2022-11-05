@@ -2,7 +2,7 @@ import landingPage1 from "../../images/landingpage1.svg";
 const Home = () => {
     const emphStyle = "text-white bg-gray-600 rounded-xl px-4 shadow-md";
     return(
-        <div className={"text-black h-screen flex"} id={"home"}>
+        <div className={"text-black h-[100vh] flex"} id={"home"}>
             <div className={"flex flex-col justify-center"}>
                 <div className={"ml-8 font-raleway text-[60px]"}>
                     <h1>We provide unlimited access to <span className={emphStyle}>all</span> public sector data</h1>
