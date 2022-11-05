@@ -8,9 +8,9 @@ import {useEffect, useState} from "react";
 const LandingPageLg = () => {
 
     return(
-        <div className={"w-screen bg-gray-300"}>
+        <div className={"w-screen bg-gray-100"}>
             <NavBar></NavBar>
-            {/*<Home></Home>*/}
+            <Home></Home>
             {/*<About></About>*/}
             {/*<DocsDisplay></DocsDisplay>*/}
             {/*<Contact></Contact>*/}
