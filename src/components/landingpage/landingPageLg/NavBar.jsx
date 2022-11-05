@@ -7,7 +7,7 @@ const NavBar = () => {
     const navigate = useNavigate();
 
     const handleTryOut = () => {
-        navigate("/demo");
+        navigate("/dashboard");
     };
 
     return(
