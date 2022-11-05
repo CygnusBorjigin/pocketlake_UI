@@ -11,7 +11,7 @@ const NavBar = () => {
     };
 
     return(
-        <div className={"text-black h-20 flex flex-col justify-center sticky border-b-2 shadow-lg font-bold"}>
+        <div className={"text-black h-20 flex flex-col justify-center fixed border-b-2 shadow-lg font-bold bg-gray-100"}>
             <div className={"w-screen flex justify-between"}>
                 <div className={"text-4xl font-raleway ml-6 flex flex-col font-bold"}>
                     <div>

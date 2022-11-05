@@ -12,7 +12,7 @@ const LandingPageLg = () => {
             <NavBar></NavBar>
             <Home></Home>
             <About></About>
-            {/*<DocsDisplay></DocsDisplay>*/}
+            <DocsDisplay></DocsDisplay>
             {/*<Contact></Contact>*/}
         </div>
     )
