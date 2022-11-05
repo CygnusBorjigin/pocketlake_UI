@@ -11,7 +11,7 @@ const LandingPageLg = () => {
         <div className={"w-screen bg-gray-100"}>
             <NavBar></NavBar>
             <Home></Home>
-            {/*<About></About>*/}
+            <About></About>
             {/*<DocsDisplay></DocsDisplay>*/}
             {/*<Contact></Contact>*/}
         </div>
