@@ -1,4 +1,4 @@
-import add from "../images/add.svg";
+import add from "../../images/add.svg";
 
 const CreateProject = () => {
     return(

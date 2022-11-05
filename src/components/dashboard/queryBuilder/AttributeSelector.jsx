@@ -74,20 +74,20 @@ const AttributeSelector = (props) => {
     }
 
     return(
-    <div className={"bg-gray-200 w-2/3 mx-4"}>
-        <div className={"w-full flex justify-between"}>
-            <h1 className={"ml-20 mt-2 cursor-pointer"} onClick={() => setDisplayGeolocation(prev => !prev)}>National Weather Service</h1>
-            <input type={"checkbox"} onChange={checkNationalWeatherService}></input>
+    <div className={"bg-white w-2/3 font-quicksand "}>
+        <div className={"flex h-20 text-[20px] border-b-2 border-b-gray-500"}>
+            <input type={"checkbox"} className={"ml-8"} onChange={checkNationalWeatherService}></input>
+            <h1 className={"w-1/2 mt-6 ml-5 cursor-pointer"} onClick={() => setDisplayGeolocation(prev => !prev)}>Weather</h1>
         </div>
         {displayGeoLocation ?
-            <div className={"w-full flex justify-between"}>
-                <h1 className={"ml-28 mt-2 cursor-pointer"} onClick={() => setDisplayAttribute(prev => !prev)}>geolocation</h1>
+            <div className={"flex mt-4"}>
+                <h1 className={"mx-28 cursor-pointer"} onClick={() => setDisplayAttribute(prev => !prev)}>geolocation</h1>
                 <div>
                     <label className={"mr-2"}>latitude</label>
                     <input
                         placeholder={"latitude"}
                         value={latitude}
-                        className={"text-center"}
+                        className={"text-center border-2 border-gray-400 rounded-lg"}
                         id={"lad"}
                         onChange={handelChangeLad}></input>
                     <label
@@ -97,7 +97,7 @@ const AttributeSelector = (props) => {
                     <input
                         placeholder={"longitude"}
                         value={longitude}
-                        className={"text-center"}
+                        className={"text-center border-2 border-gray-400 rounded-lg"}
                         id={"lon"}
                         onChange={handelChangeLong}>
                     </input>

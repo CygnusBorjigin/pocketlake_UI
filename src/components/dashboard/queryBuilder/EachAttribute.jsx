@@ -33,16 +33,16 @@ const EachAttribute = (props) => {
     }
 
     return(
-        <li className={"flex justify-between"} key={uuidv4()}>
-            <div className={"flex"}>
+        <li className={"flex my-2"} key={uuidv4()}>
+            <div className={"flex basis-1/4"}>
                 {autoFocusFrom || autoFocusTo ? <input type={"checkbox"} className={"mr-2"} onChange={handelCheckBox} checked></input> : <input type={"checkbox"} className={"mr-2"} onChange={() => handelCheckAttribute(attributeName)}></input>}
                 <p>{attributeName}</p>
             </div>
-            <div>
+            <div className={"basis-3/4 flex justify-center"}>
                 <label className={"mr-2"}>time from</label>
-                {autoFocusFrom ? <input className={"text-center"} value={timeFrom} onChange={handelChangeTimeFrom} autoFocus></input> : <input className={"text-center"} value={timeFrom} onChange={handelChangeTimeFrom}></input>}
+                {autoFocusFrom ? <input className={"text-center border-2 border-gray-400 rounded-lg"} value={timeFrom} onChange={handelChangeTimeFrom} autoFocus></input> : <input className={"text-center border-2 border-gray-400 rounded-lg"} value={timeFrom} onChange={handelChangeTimeFrom}></input>}
                 <label className={"mx-2"}>time to</label>
-                {autoFocusTo ? <input className={"text-center"} value={timeTo} onChange={handelChangeTimeTo} autoFocus></input> : <input className={"text-center"} value={timeTo} onChange={handelChangeTimeTo}></input>}
+                {autoFocusTo ? <input className={"text-center border-2 border-gray-400 rounded-lg"} value={timeTo} onChange={handelChangeTimeTo} autoFocus></input> : <input className={"text-center border-2 border-gray-400 rounded-lg"} value={timeTo} onChange={handelChangeTimeTo}></input>}
             </div>
         </li>
     )
