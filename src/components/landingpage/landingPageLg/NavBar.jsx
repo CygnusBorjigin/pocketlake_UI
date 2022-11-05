@@ -2,7 +2,7 @@ import {Link as ScrollLink} from 'react-scroll';
 import {useNavigate} from "react-router-dom";
 
 const NavBar = () => {
-    const buttonStyle = "m-4 border-b-2 border-b-black hover:border-b-white px-3 font-cinzel text-lg";
+    const buttonStyle = "m-4 px-3 font-raleway text-lg border-2 rounded-lg shadow-lg hover:bg-gray-600 hover:text-white";
 
     const navigate = useNavigate();
 
@@ -11,9 +11,9 @@ const NavBar = () => {
     };
 
     return(
-        <div className={"text-amber-50 h-20 flex flex-col justify-center fixed bg-black"}>
+        <div className={"text-black h-20 flex flex-col justify-center fixed border-b-2 shadow-lg"}>
             <div className={"w-screen flex justify-between"}>
-                <div className={"text-4xl font-cinzel ml-6 flex flex-col"}>
+                <div className={"text-4xl font-raleway ml-6 flex flex-col font-bold"}>
                     <div>
                         <span>Thror</span><span className={"text-green-400"}>Map</span>
                     </div>

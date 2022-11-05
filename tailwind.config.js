@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        "cinzel": ["Cinzel", "serif"],
-        "lora": ["lora", "serif"],
+        "sacramento": ["Sacramento", "cursive"],
+        "quicksand": ["Quicksand", "sans-serif"],
         "raleway": ["Raleway", "sans-serif"]
       },
     },
