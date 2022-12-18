@@ -1,6 +1,6 @@
 function App() {
   return (
-  <h1>this is the start of our empire</h1>
+  <h1>Start of our empire</h1>
   )
 }
 
